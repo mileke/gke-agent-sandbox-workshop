@@ -217,6 +217,7 @@ gcloud artifacts repositories delete agent-repo --location=$REGION --quiet
 | A command says a variable is empty, or an image path has `//` in it | Cloud Shell lost your variables. Run `cd ~/gke-agent-sandbox-workshop && source env.sh`. |
 | `data-agent` pod in `ImagePullBackOff` | The build in Step 7 didn't finish. Run the `gcloud builds submit` line again, then `kubectl rollout restart deployment/data-agent`. |
 | UI shows `403 PERMISSION_DENIED` from Gemini | The IAM binding in Step 7 takes a minute or two to apply. Wait, then send the prompt again. |
+| `Insufficient project quota … CPUS_ALL_REGIONS` | The lab needs 12 vCPUs. Delete clusters or VMs you aren't using (`gcloud container clusters list`), then run the failed command again. |
 | Warm pool pods stay `Pending` | The gVisor node pool isn't ready. Check `kubectl get nodes` shows 3 nodes. |
 
 ## What's different from the original codelab
