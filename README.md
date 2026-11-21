@@ -174,10 +174,12 @@ The agent writes pandas code, runs it in a sandbox, and answers **$25,625**. Cli
 
 ## Step 9: Test the isolation
 
-Ask the agent to read `/etc/shadow` or call the metadata server and Gemini will refuse. That is good, but it tests the model, not the sandbox. To test the sandbox itself, run code in one directly:
+Ask the agent to read `/etc/shadow` or call the metadata server and Gemini will refuse. That is good, but it tests the model, not the sandbox. To test the sandbox itself, run code in one directly.
+
+Run this in **Cloud Shell**, not in the ADK web UI. The script uses `kubectl` to claim a real sandbox and run four checks inside it:
 
 ```bash
-./scripts/test-isolation.sh
+cd ~/gke-agent-sandbox-workshop && ./scripts/test-isolation.sh
 ```
 
 Expected:
