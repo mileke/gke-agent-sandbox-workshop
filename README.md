@@ -110,7 +110,7 @@ kubectl rollout status deployment/sandbox-router-deployment
 
 ## Step 6: Block sandboxes from your project's credentials
 
-Any pod can ask the metadata server (`169.254.169.254`) for your project's details and access tokens. Code written by a model should not be able to. This policy blocks that range for every sandbox and still allows normal internet access.
+Any pod can ask the metadata server (`169.254.169.254`) for your project's details and access tokens. Code written by a model should not be able to. This policy applies to every sandbox pod (the agent and router pods have an `app` label, sandboxes don't). It blocks the `169.254.0.0/16` range, allows DNS to `kube-system`, and still allows normal internet access.
 
 ```bash
 kubectl apply -f k8s/sandbox-policy.yaml
@@ -185,7 +185,7 @@ Expected:
 ```text
 Kernel             4.19.0-gvisor
 Host /etc/shadow   cat: /etc/shadow: Permission denied
-Metadata server    <urlopen error timed out>
+Metadata server    urllib.error.URLError: <urlopen error timed out>
 Public internet    200
 ```
 
